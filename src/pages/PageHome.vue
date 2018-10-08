@@ -1,20 +1,20 @@
 <template>
   <div class="col-full">
     <h1>Welcome to the forum</h1>
-    <ThreadList :threads="threads" :key="`thread['.key']`" />
+    <ForumList :forums="forums" />
   </div>
 </template>
 
 <script>
 import sourceData from '@/data'
-import ThreadList from '@/components/ThreadList'
+import ForumList from '@/components/ForumList'
 export default {
   components: {
-    ThreadList
+    ForumList
   },
   data () {
     return {
-      threads: Object.values(sourceData.threads),
+      forums: Object.values(sourceData.forums),
       posts: sourceData.posts,
       users: sourceData.users
     }
