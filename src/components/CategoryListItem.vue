@@ -1,19 +1,14 @@
 <template>
   <div class="forum-list">
-
     <h2 class="list-title">
-      <router-link :to="{name: 'Category', params: {id: category['.key']}}">
-        {{ category.name }}
-      </router-link>
+      <router-link :to="{name: 'Category', params: {id: category['.key']}}">{{ category.name }}</router-link>
     </h2>
-
-    <ForumList :forums="categoryForums" />
+    <ForumList :forums="categoryForums"/>
   </div>
 </template>
 
 <script>
   import ForumList from '@/components/ForumList'
-  import sourceData from '@/data'
 
   export default {
     components: {
@@ -27,7 +22,7 @@
     },
     computed: {
       categoryForums () {
-        return Object.values(sourceData.forums)
+        return Object.values(this.$store.state.forums)
         .filter(forum => forum.categoryId === this.category['.key'])
       }
     }

@@ -6,25 +6,21 @@
         <a href="#">
           <img class="avatar-large" :src="user.avatar" :alt="user.name">
         </a>
-          <p class="desktop-only text-small">{{userPostsCount}} posts</p>
+        <p class="desktop-only text-small">{{userPostsCount}} posts</p>
       </div>
-
       <div class="post-content">
         <div>
-          <p>
-            {{post.text}}
-          </p>
+          <p>{{post.text}}</p>
         </div>
       </div>
       <div class="post-date text-faded">
-        <AppDate :timestamp="post.publishedAt" />
+        <AppDate :timestamp="post.publishedAt"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import sourceData from '@/data'
   export default {
     props: {
       post: {
@@ -35,7 +31,7 @@
 
     computed: {
       user () {
-        return sourceData.users[this.post.userId]
+        return this.$store.state.users[this.post.userId]
       },
 
       userPostsCount () {

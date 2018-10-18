@@ -2,14 +2,13 @@
   <div class="col-full">
     <div class="col-full push-top">
       <h1>{{category.name}}</h1>
-      <CategoryListItem :category="category" />
+      <CategoryListItem :category="category"/>
     </div>
   </div>
 </template>
 
 <script>
   import CategoryListItem from '@/components/CategoryListItem'
-  import sourceData from '@/data.json'
 
   export default {
     components: {
@@ -23,7 +22,7 @@
     },
     computed: {
       category () {
-        return sourceData.categories[this.id]
+        return this.$store.state.categories[this.id]
       }
     }
   }
