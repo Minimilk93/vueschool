@@ -9,17 +9,14 @@
         <a href="new-thread.html" class="btn-green btn-small">Start a thread</a>
       </div>
     </div>
-
     <div class="col-full push-top">
-      <ThreadList :threads="threads" />
+      <ThreadList :threads="threads"/>
     </div>
-
   </div>
 </template>
 
 <script>
   import ThreadList from '@/components/ThreadList'
-  import sourceData from '@/data.json'
 
   export default {
     components: {
@@ -33,10 +30,10 @@
     },
     computed: {
       forum () {
-        return sourceData.forums[this.id]
+        return this.$store.state.forums[this.id]
       },
       threads () {
-        return Object.values(sourceData.threads)
+        return Object.values(this.$store.state.threads)
           .filter(thread => thread.forumId === this.id)
       }
     }
