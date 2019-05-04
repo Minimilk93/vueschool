@@ -1,5 +1,4 @@
 <template>
-  <div>
     <div class="col-large push-top">
       <h1>{{thread.title}}</h1>
       <p>
@@ -14,7 +13,6 @@
       <PostList :posts="posts"/>
       <PostEditor :threadId="id"/>
     </div>
-  </div>
 </template>
 
 <script>
