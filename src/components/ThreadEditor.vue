@@ -11,8 +11,8 @@
         </div>
 
         <div class="btn-group">
-            <button @click.prevent="cancel" class="btn btn-ghost">Cancel</button>
-            <button class="btn btn-blue" type="submit" name="Publish">{{isUpdate ? 'Update' : 'Publish'}} </button>
+            <button v-if="isUpdate" @click.prevent="cancel" class="btn btn-ghost">Cancel</button>
+            <button class="btn btn-blue" type="submit" name="Publish">{{isUpdate ? 'Update' : 'Submit post'}}</button>
         </div>
     </form>
 </template>
