@@ -4,8 +4,9 @@
       <div class="user-info">
         <a href="#" class="user-name">{{user.name}}</a>
         <a href="#">
-          <img class="avatar-large" :src="user.avatar" :alt="user.name">
+          <img class="avatar-large" :src="user.avatar" :alt="user.name" />
         </a>
+        <p class="desktop-only text-small">{{userThreadsCount}} threads</p>
         <p class="desktop-only text-small">{{userPostsCount}} posts</p>
       </div>
       <div class="post-content">
@@ -13,27 +14,29 @@
           <div>
             <p>{{post.text}}</p>
           </div>
-          <a @click.prevent="editing = true" href="#" style="margin-left: auto;" class="link-unstyled" title="Make a change"><i class="fa fa-pencil"></i></a>
+          <a
+            @click.prevent="editing = true"
+            href="#"
+            style="margin-left: auto;"
+            class="link-unstyled"
+            title="Make a change"
+          >
+            <i class="fa fa-pencil"></i>
+          </a>
         </template>
         <div v-else class="col-full">
-          <PostEditor
-            :post="post"
-            @save="editing = false"
-            @cancel="editing = false"
-          />
+          <PostEditor :post="post" @save="editing = false" @cancel="editing = false" />
         </div>
-
       </div>
       <div class="post-date text-faded">
         <div v-if="post.edited" class="edition-info">edited</div>
-        <AppDate :timestamp="post.publishedAt"/>
+        <AppDate :timestamp="post.publishedAt" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { countObjectProperties } from '@/utils'
 import PostEditor from './PostEditor';
 
 export default {
@@ -48,22 +51,26 @@ export default {
     PostEditor
   },
 
-  data () {
+  data() {
     return {
       editing: false
-    }
+    };
   },
 
   computed: {
-    user () {
-      return this.$store.state.users[this.post.userId]
+    user() {
+      return this.$store.state.users[this.post.userId];
     },
 
-    userPostsCount () {
-      return countObjectProperties(this.user.posts)
+    userPostsCount() {
+      return this.$store.getters.userPostsCount(this.post.userId);
+    },
+
+    userThreadsCount() {
+      return this.$store.getters.userThreadsCount(this.user['.key']);
     }
   }
-}
+};
 </script>
 
 <style scoped>

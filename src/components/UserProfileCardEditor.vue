@@ -2,7 +2,7 @@
   <div class="col-3 push-top">
     <div class="profile-card">
       <p class="text-center">
-        <img :src="user.avatar" alt class="avatar-xlarge img-update">
+        <img :src="user.avatar" alt class="avatar-xlarge img-update" />
       </p>
       <div class="form-group">
         <input
@@ -10,7 +10,7 @@
           type="text"
           placeholder="Username"
           class="form-input text-lead text-bold"
-        >
+        />
       </div>
       <div class="form-group">
         <input
@@ -18,7 +18,7 @@
           type="text"
           placeholder="Full Name"
           class="form-input text-lead"
-        >
+        />
       </div>
       <div class="form-group">
         <label for="user_bio">Bio</label>
@@ -33,14 +33,14 @@
         <span>{{userPostsCount}} posts</span>
         <span>{{userThreadsCount}} threads</span>
       </div>
-      <hr>
+      <hr />
       <div class="form-group">
         <label class="form-label" for="user_website">Website</label>
-        <input v-model="activeUser.website" autocomplete="off" class="form-input" id="user_website">
+        <input v-model="activeUser.website" autocomplete="off" class="form-input" id="user_website" />
       </div>
       <div class="form-group">
         <label class="form-label" for="user_email">Email</label>
-        <input v-model="activeUser.email" autocomplete="off" class="form-input" id="user_email">
+        <input v-model="activeUser.email" autocomplete="off" class="form-input" id="user_email" />
       </div>
       <div class="form-group">
         <label class="form-label" for="user_location">Location</label>
@@ -49,7 +49,7 @@
           autocomplete="off"
           class="form-input"
           id="user_location"
-        >
+        />
       </div>
       <div class="btn-group space-between">
         <button @click.prevent="cancel" class="btn-ghost">Cancel</button>
@@ -66,33 +66,36 @@ export default {
     user: {
       required: true,
       type: Object
-    },
-    userPostsCount: {
-      required: true,
-      type: Number
-    },
-    userThreadsCount: {
-      required: true,
-      type: Number
     }
   },
-  data () {
+
+  data() {
     return {
       activeUser: { ...this.user }
+    };
+  },
+
+  computed: {
+    userThreadsCount() {
+      return this.$store.getters.userThreadsCount(this.user['.key']);
+    },
+
+    userPostsCount() {
+      return this.$store.getters.userPostsCount(this.user['.key']);
     }
   },
 
   methods: {
-    save () {
-      this.$store.dispatch('updateUser', { ...this.activeUser })
-      this.$router.push({ name: 'Profile' })
+    save() {
+      this.$store.dispatch('updateUser', { ...this.activeUser });
+      this.$router.push({ name: 'Profile' });
     },
 
-    cancel () {
-      this.$router.push({ name: 'Profile' })
+    cancel() {
+      this.$router.push({ name: 'Profile' });
     }
   }
-}
+};
 </script>
 
 <style scoped>

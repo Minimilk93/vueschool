@@ -1,14 +1,14 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from '@/pages/PageHome'
-import ThreadShow from '@/pages/PageThreadShow'
-import Forum from '@/pages/PageForum'
-import ThreadCreate from '@/pages/PageThreadCreate'
-import ThreadEdit from '@/pages/PageThreadEdit'
-import Category from '@/pages/PageCategory'
-import Profile from '@/pages/PageProfile'
-import NotFound from '@/pages/PageNotFound'
-Vue.use(Router)
+import Vue from 'vue';
+import Router from 'vue-router';
+import Home from '@/pages/PageHome';
+import ThreadShow from '@/pages/PageThreadShow';
+import Forum from '@/pages/PageForum';
+import ThreadCreate from '@/pages/PageThreadCreate';
+import ThreadEdit from '@/pages/PageThreadEdit';
+import Category from '@/pages/PageCategory';
+import Profile from '@/pages/PageProfile';
+import NotFound from '@/pages/PageNotFound';
+Vue.use(Router);
 
 export default new Router({
   routes: [
@@ -51,13 +51,13 @@ export default new Router({
       path: '/me',
       name: 'Profile',
       component: Profile,
-      props: true
+      props: { edit: false }
     },
     {
       path: '/me/edit',
       name: 'ProfileEdit',
       component: Profile,
-      props: {edit: true}
+      props: { edit: true }
     },
     {
       path: '*',
@@ -66,4 +66,4 @@ export default new Router({
     }
   ],
   mode: 'history'
-})
+});
